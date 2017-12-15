@@ -30,6 +30,9 @@ using namespace ATL;
 	raw_interfaces_only, raw_native_types, no_namespace, named_guids \
 	exclude("UINT_PTR")
 
+#import "progid:Scripting.ScriptEngine" \
+	raw_interfaces_only, raw_native_types, no_namespace, named_guids
+
 #include "ArcCATIDs.h"
 
 #ifndef CHECKHR

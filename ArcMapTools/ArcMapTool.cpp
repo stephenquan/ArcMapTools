@@ -95,7 +95,23 @@ STDMETHODIMP CArcMapTool::OnClick()
 	HWND hWnd;
 	CHECKHR(spIApplication->get_hWnd((OLE_HANDLE*) &hWnd));
 
-	::MessageBox(hWnd, _T("Clicked"), _T("ArcMapTool"), MB_OK);
+	CComPtr<IScriptEngine> spIScriptEngine;
+	CHECKHR(spIScriptEngine.CoCreateInstance(OLESTR("Scripting.ScriptEngine")));
+
+	LONG Index = 0;
+	hr = spIScriptEngine->SetWindow((OLE_HANDLE) hWnd);
+	hr = spIScriptEngine->SetItem(CComBSTR("Application"), &CComVariant((IDispatch*) spIApplication), &Index);
+
+	CComVariant Result;
+	//hr = spIScriptEngine->Evaluate(CComBSTR("Now\r\n"), CComBSTR("VBScript"), &Result);
+	//hr = spIScriptEngine->Execute(CComBSTR("MsgBox Now\r\n"), CComBSTR("VBScript"));
+	hr = spIScriptEngine->Import(CComBSTR(L"C:\\Temp\\Ingrid\\good.vbs"), CComBSTR(L"C:\\Temp\\Ingrid\\good.vbs"), CComBSTR("VBScript"));
+	hr = spIScriptEngine->Evaluate(CComBSTR(L"Run"), CComBSTR("VBScript"), &Result);
+
+	CComVariant ResultBSTR(OLESTR("Clicked"));
+	hr = VariantChangeTypeEx(&ResultBSTR, &Result, 0, 0, VT_BSTR);
+
+	::MessageBox(hWnd, ResultBSTR.vt == VT_BSTR ? V_BSTR(&ResultBSTR) : _T("Clicked"), _T("ArcMapTool"), MB_OK);
 
 	return S_OK;
 }
