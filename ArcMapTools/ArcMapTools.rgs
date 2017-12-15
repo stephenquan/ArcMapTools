@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'ArcMapTools'
+		'ArcMapTools.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

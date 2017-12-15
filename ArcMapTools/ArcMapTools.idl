@@ -1,0 +1,43 @@
+// ArcMapTools.idl : IDL source for ArcMapTools
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ArcMapTools.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(B18F4FE9-D7AA-4F0D-9DD3-1E8722AF7F41),
+	dual,
+	nonextensible,
+	helpstring("IArcMapTool Interface"),
+	pointer_default(unique)
+]
+interface IArcMapTool : IDispatch{
+};
+[
+	uuid(4609A402-C099-492B-A817-D417CCCBB074),
+	version(1.0),
+	helpstring("ArcMapTools 1.0 Type Library")
+]
+library ArcMapToolsLib
+{
+	importlib("C:\Program Files (x86)\ArcGIS\Desktop10.5\com\esriSystem.olb");
+	importlib("C:\Program Files (x86)\ArcGIS\Desktop10.5\com\esriSystemUI.olb");
+	importlib("C:\Program Files (x86)\ArcGIS\Desktop10.5\com\esriCarto.olb");
+	importlib("C:\Program Files (x86)\ArcGIS\Desktop10.5\com\esriGeodatabase.olb");
+	importlib("C:\Program Files (x86)\ArcGIS\Desktop10.5\com\esriGeometry.olb");
+
+	importlib("stdole2.tlb");
+	[
+		uuid(672DA258-BBC5-4645-884A-D95BAE9591F2),
+		helpstring("ArcMapTool Class")
+	]
+	coclass ArcMapTool
+	{
+		[default] interface IUnknown;
+		interface ICommand;
+	};
+};

@@ -1,0 +1,21 @@
+HKCR
+{
+	ArcMapTools.ArcMapTool = s 'ArcMapTool Class'
+	{
+		CLSID = s '{672DA258-BBC5-4645-884A-D95BAE9591F2}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {672DA258-BBC5-4645-884A-D95BAE9591F2} = s 'ArcMapTool Class'
+		{
+			ProgID = s 'ArcMapTools.ArcMapTool'
+			VersionIndependentProgID = s 'ArcMapTools.ArcMapTool'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{4609A402-C099-492B-A817-D417CCCBB074}'
+		}
+	}
+}
