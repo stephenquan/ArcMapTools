@@ -19,6 +19,7 @@
 #include <atlbase.h>
 #include <atlcom.h>
 #include <atlctl.h>
+#include <activscp.h>
 
 using namespace ATL;
 
@@ -31,6 +32,9 @@ using namespace ATL;
 	exclude("UINT_PTR")
 
 #import "progid:Scripting.ScriptEngine" \
+	raw_interfaces_only, raw_native_types, no_namespace, named_guids
+
+#import "progid:Scripting.ArcObjects" \
 	raw_interfaces_only, raw_native_types, no_namespace, named_guids
 
 #include "ArcCATIDs.h"
