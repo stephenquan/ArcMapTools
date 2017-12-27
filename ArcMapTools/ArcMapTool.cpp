@@ -145,6 +145,14 @@ STDMETHODIMP CArcMapTool::OnClick()
 
 	hr = spIScriptEngine->Clear();
 
+	{
+		LONG nRef = ((IUnknown*) spIScriptEngine)->AddRef();
+		nRef = ((IUnknown*) spIScriptEngine)->Release();
+		TCHAR szText[256] = { };
+		_stprintf_s(szText, _T("ScriptEngine (Clear): %d\r\n"), nRef);
+		OutputDebugString(szText);
+	}
+
 	spIApplication = NULL;
 	spIScriptEngine = NULL;
 
@@ -154,12 +162,6 @@ STDMETHODIMP CArcMapTool::OnClick()
 		TCHAR szText[256] = { };
 		_stprintf_s(szText, _T("ArcObjects (Clear): %d\r\n"), nRef);
 		OutputDebugString(szText);
-		/*
-		while (nRef > 1)
-		{
-			nRef = ((IUnknown*) (spIArcObjects))->Release();
-		}
-		*/
 	}
 
 	spIApplication = NULL;
