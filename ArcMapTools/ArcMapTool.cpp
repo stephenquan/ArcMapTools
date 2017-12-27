@@ -114,8 +114,8 @@ STDMETHODIMP CArcMapTool::OnClick()
 	hr = spIScriptEngine->SetWindow((OLE_HANDLE) hWnd);
 	DWORD dwFlags = SCRIPTITEM_ISVISIBLE;
 	hr = spIScriptEngine->SetItem(CComBSTR("Application"), &CComVariant((IDispatch*) spIApplication), dwFlags, &Index);
-	//hr = spIScriptEngine->SetItem(CComBSTR("ArcObjects"), &CComVariant((IDispatch*) spIArcObjects), &Index);
-	hr = spIScriptEngine->AddGlobal(&CComVariant(spIArcObjects));
+	hr = spIScriptEngine->SetItem(CComBSTR("ArcObjects"), &CComVariant((IDispatch*) spIArcObjects), dwFlags, &Index);
+	//hr = spIScriptEngine->AddGlobal(&CComVariant(spIArcObjects));
 
 	{
 		LONG nRef = ((IUnknown*) (spIArcObjects))->AddRef();
